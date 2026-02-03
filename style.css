@@ -42,15 +42,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: clamp(1.4rem, 3vw, 2rem);
 }
 
 h3 {
-    font-size: 1.75rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
 }
 
 /* Heart-shaped background */
@@ -116,7 +116,10 @@ h3 {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
     padding: 20px;
+    gap: 24px;
+    flex-wrap: wrap;
     flex: 1; /* Allow main content to grow and push footer down */
 }
 
@@ -124,6 +127,7 @@ h3 {
 .aside-wrapper {
     padding: 5px;
     flex: 0 0 200px; /* Fixed width to prevent stretching */
+    max-width: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,22 +187,25 @@ h3 {
 .video-card video {
     width: 100%;
     border-radius: 15px;
+    display: block;
 }
 
 /* Main Section */
 .main-section-wrapper {
-    font-style: var(--font-body);
+    font-family: var(--font-body);
     flex: 2;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    max-width: 640px;
+    width: 100%;
 }
 
 /* 3D Box */
 .threed-box {
-    width: 250px;
-    height: 250px; /* Set a height */
+    width: min(260px, 90vw);
+    height: min(260px, 90vw); /* Set a height */
     background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
@@ -207,6 +214,13 @@ h3 {
     align-items: center;
     overflow: hidden; /* Ensures nothing spills */
     position: relative;
+}
+
+.threed-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Question and Choice Wrapper */
@@ -233,6 +247,7 @@ h3 {
     padding: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    width: min(480px, 92vw);
 }
 
 .question-box:hover,
@@ -249,7 +264,7 @@ h3 {
     cursor: pointer;
     transition: 0.3s ease-out, transform 0.3s ease-out;
     color: var(--color5);
-    font-size: 1.9rem;
+    font-size: clamp(1.1rem, 3.5vw, 1.6rem);
 }
 
 .choice-box > button {
@@ -289,11 +304,11 @@ h3 {
     transition: all 0.3s ease-in-out;
     padding: 10px 20px;
     border-radius: 10px;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.4rem);
 }
 
 .love-text {
-    font-size: 2.5rem;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     color: var(--color5); /* Warm Pink */
@@ -301,7 +316,7 @@ h3 {
 }
 
 .no-choice-text {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
     font-style: italic;
     color: var(--color5); /* Dark gray */
     margin-top: 10px;
@@ -370,9 +385,48 @@ footer {
 
 .partner-name {
     font-family: 'Playfair Display', serif; /* Fancy font */
-    font-size: 3rem; /* Bigger text */
+    font-size: clamp(1.8rem, 5vw, 3rem); /* Bigger text */
     font-weight: bold;
     color: var(--color3); /* Romantic red */
+}
+
+@media (max-width: 900px) {
+    .main-wrapper {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .aside-wrapper {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .navbar-wrapper {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar-wrapper {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .question-wrapper,
+    .choice-wrapper {
+        margin: 12px 0;
+    }
+
+    .choice-box {
+        padding: 16px;
+    }
+
+    .choice-box button {
+        width: 100%;
+        max-width: 260px;
+    }
 }
 
 .heart-container {
