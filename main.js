@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const questionText = document.querySelector(".question-box h1");
     const yesButton = document.querySelector(".choice-box button:first-child");
     const noButton = document.querySelector(".choice-box button:last-child");
+    const congratulationsAudio = new Audio("assets/congratulations.mp3");
+    congratulationsAudio.preload = "auto";
+    congratulationsAudio.loop = true;
 
     let partnerName = "Eleanor"; // Replace with dynamic value
     let noClickCount = 0; // Counter for No button clicks
@@ -76,6 +79,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 5000);
     }
 
+    function playCongratulationsSound() {
+        congratulationsAudio.pause();
+        congratulationsAudio.currentTime = 0;
+        congratulationsAudio.volume = audio.volume;
+        congratulationsAudio.muted = audio.muted;
+
+        congratulationsAudio.play().catch(() => {
+            console.log("Could not play congratulations sound.");
+        });
+    }
+
     function moveNoButtonRandomly() {
         if (!noButtonMovementEnabled) {
             return;
@@ -123,7 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     yesButton.addEventListener("click", function () {
-        questionText.innerHTML = `<span class="partner-name">${partnerName}</span><br><span class="love-text">I love you baby ❤️</span>`;
+        playCongratulationsSound();
+        questionText.innerHTML = `<span class="partner-name">${partnerName}</span><br><span class="love-text">SAFE! 😜</span>`;
         choiceBox.style.display = "none"; // Hide choices
         threedBox.classList.remove("hide");
 
