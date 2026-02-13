@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
     video.volume = 1;
     audio.loop = true;
     video.loop = false;
+    // Keep video inline on mobile browsers (avoid forced fullscreen)
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    video.setAttribute("x5-playsinline", "");
+    video.disablePictureInPicture = true;
 
     audio.play().catch(error => {
         console.log('Autoplay was prevented. User interaction needed.');

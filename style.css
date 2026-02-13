@@ -190,6 +190,10 @@ h3 {
     display: block;
 }
 
+.video-card {
+    touch-action: pan-y;
+}
+
 /* Main Section */
 .main-section-wrapper {
     font-family: var(--font-body);
@@ -480,5 +484,11 @@ footer {
     100% {
         transform: translateY(-100vh) scale(0.5) rotate(-45deg);
         opacity: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .video-card video {
+        pointer-events: none;
     }
 }
